@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".Registro">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/tvRegistrar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Registrarse"
+            android:textColor="@color/white"
+            android:textSize="40dp"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            tools:ignore="MissingConstraints"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="180dp"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/logo"/>
+
+        <EditText
+            android:id="@+id/etNombre"
+            android:layout_width="350dp"
+            android:layout_height="30dp"
+            android:hint="Nombre"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/correo_password"
+            android:layout_marginTop="40dp"
+            android:gravity="center"/>
+
+        <EditText
+            android:id="@+id/etCorreo"
+            android:layout_width="350dp"
+            android:layout_height="30dp"
+            android:hint="Correo"
+            android:background="@drawable/correo_password"
+            android:layout_marginTop="20dp"
+            android:gravity="center"/>
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="350dp"
+            android:layout_height="30dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:background="@drawable/correo_password"
+            android:layout_marginTop="20dp"
+            android:gravity="center"/>
+
+        <Button
+            android:id="@+id/Registrarse"
+            android:layout_width="300dp"
+            android:layout_height="35dp"
+            android:gravity="center"
+            android:background="@drawable/btn_ingresar"
+            android:layout_marginTop="30dp"
+            android:text="Registrarse"/>
+
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
