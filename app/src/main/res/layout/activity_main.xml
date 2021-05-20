@@ -46,6 +46,50 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hola"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:textSize="28dp"/>
+
+        <TextView
+            android:id="@+id/textViewName"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:text="username"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:layout_marginStart="5dp"
+            android:textSize="28dp"/>
+
+        <Button
+            android:id="@+id/btnSalir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Salir"/>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lista de Ventas"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:textColor="@color/black"
+        android:textSize="28dp"/>
+
     <ListView
         android:id="@+id/listViewPersonas"
         android:layout_margin="15dp"

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,11 +17,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fitclothesco.Adaptadores.ListViewVentasAdapter;
 import com.example.fitclothesco.model.Venta;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,12 +45,15 @@ public class MainActivity extends AppCompatActivity {
     ListView listViewVentas;
 
     EditText inputNombre, inputPrenda, inputPrecio;
-    Button btnCancelar;
+    Button btnCancelar, btnSalir;
+    TextView textViewName;
 
     Venta ventaSeleccionada;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    FirebaseAuth mAuth;
 
+    DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,9 +65,24 @@ public class MainActivity extends AppCompatActivity {
         inputPrecio = findViewById(R.id.inputPrecio);
 
         btnCancelar = findViewById(R.id.btnCancelar);
+        btnSalir = findViewById(R.id.btnSalir);
+        textViewName = findViewById(R.id.textViewName);
 
         listViewVentas = findViewById(R.id.listViewPersonas);
         linearLayoutEditar = findViewById(R.id.LinearLayoutEditar);
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        btnSalir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mAuth.signOut();
+                startActivity(new Intent(MainActivity.this, Login.class));
+                finish();
+            }
+        });
+
+        getUserInfo();
 
         listViewVentas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -251,5 +272,24 @@ public class MainActivity extends AppCompatActivity {
         } else {
             return  false;
         }
+    }
+
+    public void getUserInfo(){
+        String id = mAuth.getCurrentUser().getUid();
+        mDatabase.child("Users").child(id).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    String name = snapshot.child("name").getValue().toString();
+
+                    textViewName.setText(name);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }
